@@ -11,26 +11,27 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
   #include <iostream>
  #include <ctime>
-
- int run(int max, int* arr, int len){
-     int sum = 0;
-     for(int i = 0; i < max; i++){
-         for(int j = 0; j < len; j++){
-             if(i%arr[j]==0){
-                sum += i;
-                break;
-             }
-         }
-     }
-     return sum;
- }
+ 
+ int run(int limit){
+    int v1=1;
+    int v2=1;
+    int n = v1+v2;
+    int sum = 0;
+    while(n < limit){
+        std::cout << n << std::endl;
+        if(n%2 == 0){
+            sum += n;
+        }
+        v1 = v2;
+        v2 = n;
+        n = v1 + v2;
+    }
+    return sum;
+}
 
  int main(){
      std::clock_t begin = std::clock();
-     int len = 2;
-     int dividers[len] = {3, 5};
-     int max = 1000;
-     int result = run(max, dividers, len);
+     int result = run(4000000);
      std::cout << "Result: " << result <<  std::endl;
      std::clock_t end = std::clock();
      std::cout << "Time taken: " << (end - begin) / CLOCKS_PER_SEC <<  std::endl;
