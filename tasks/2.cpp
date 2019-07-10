@@ -8,18 +8,20 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
  */
 
+#include <iostream>
+#include <ctime>
 
-  #include <iostream>
- #include <ctime>
- 
- int run(int limit){
-    int v1=1;
-    int v2=1;
-    int n = v1+v2;
+int run(int limit)
+{
+    int v1 = 1;
+    int v2 = 1;
+    int n = v1 + v2;
     int sum = 0;
-    while(n < limit){
+    while (n < limit)
+    {
         std::cout << n << std::endl;
-        if(n%2 == 0){
+        if (n % 2 == 0)
+        {
             sum += n;
         }
         v1 = v2;
@@ -29,11 +31,12 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
     return sum;
 }
 
- int main(){
-     std::clock_t begin = std::clock();
-     int result = run(4000000);
-     std::cout << "Result: " << result <<  std::endl;
-     std::clock_t end = std::clock();
-     std::cout << "Time taken: " << (end - begin) / CLOCKS_PER_SEC <<  std::endl;
-     return 0;
- }
+int main()
+{
+    std::clock_t begin = std::clock();
+    int result = run(4000000);
+    std::cout << "Result: " << result << std::endl;
+    std::clock_t end = std::clock();
+    std::cout << "Time taken: " << (end - begin) / CLOCKS_PER_SEC << std::endl;
+    return 0;
+}
