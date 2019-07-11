@@ -17,7 +17,7 @@ int run(superlong max)
     int s = sqrt(max);
     int maxPrimeDivider = 1;
     int arr[s];
-    memset(arr, 1, s);
+    memset(arr, 1, sizeof(arr));
 
     for (int i = 2; i < s; i++)
     {
