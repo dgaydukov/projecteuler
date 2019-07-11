@@ -8,9 +8,11 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 /**
  * Solution algorithm
- * 1. Remove all numbers that are divisors inside sequence (we have 1,2,3,4,5,6,7,8,9,10), we can easily remove 2 cause it divisors of 4, 3
- * cause it divisor of 9, 4 cause it divisor of 8 and so on. After we got number 6,7,8,9,10
- * 2. Multiply all primes and remove them from vector
+ * 1. Remove all numbers that are divisors inside sequence (we have 1,2,3,4,5,6,7,8,9,10), 
+ * we can easily remove 2 cause it divisors of 4, 
+ * 3 cause it divisor of 9, 
+ * 4 cause it divisor of 8 and so on. After we got number 6,7,8,9,10
+ * 2. Multiply all primes and remove them from vector (cause they have no divisors except themselves)
  * 3. Find LCM (least common multiple) of remaining number
  * 4. Multiple LCM from step 3 and primes from step 2
  */
@@ -103,7 +105,7 @@ int run(int upToNum)
 int main()
 {
     std::clock_t begin = std::clock();
-    int result = run(23);
+    int result = run(20);
     std::cout << "Result: " << result << std::endl;
     std::clock_t end = std::clock();
     std::cout << "Time taken: " << (end - begin) / CLOCKS_PER_SEC << std::endl;

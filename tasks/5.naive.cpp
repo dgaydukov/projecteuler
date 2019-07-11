@@ -39,7 +39,7 @@ int run(int upToNum)
 int main()
 {
     std::clock_t begin = std::clock();
-    int result = run(23);
+    int result = run(20);
     std::cout << "Result: " << result << std::endl;
     std::clock_t end = std::clock();
     std::cout << "Time taken: " << (end - begin) / CLOCKS_PER_SEC << std::endl;
