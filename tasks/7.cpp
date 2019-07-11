@@ -5,16 +5,17 @@ What is the 10 001st prime number?
 
  */
 
-
 #include <iostream>
 #include <ctime>
 #include <math.h>
-#include <string.h>
 
-bool isPrime(int n){
+bool isPrime(int n)
+{
     int max = sqrt(n) + 1;
-    for(int i = 3; i < max; i+=2){
-        if(n % i == 0){
+    for (int i = 3; i < max; i += 2)
+    {
+        if (n % i == 0)
+        {
             return false;
         }
     }
@@ -24,14 +25,17 @@ int run(int upToNum)
 {
     int counter = 1;
     int num = 3;
-    while(true){
-        if(isPrime(num)){
+    while (true)
+    {
+        if (isPrime(num))
+        {
             counter++;
-            if(counter == upToNum){
+            if (counter == upToNum)
+            {
                 return num;
             }
         }
-        num+=2;
+        num += 2;
     }
 }
 

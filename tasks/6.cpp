@@ -11,18 +11,16 @@ Find the difference between the sum of the squares of the first one hundred natu
 
  */
 
-
 #include <iostream>
 #include <ctime>
 #include <math.h>
 
-
-
 int run(int upToNum)
 {
     int sumSquares, squareSum;
-    squareSum = pow((1+upToNum) * upToNum / 2, 2);
-    for(int i = 1; i <= upToNum; i++){
+    squareSum = pow((1 + upToNum) * upToNum / 2, 2);
+    for (int i = 1; i <= upToNum; i++)
+    {
         sumSquares += pow(i, 2);
     }
     return squareSum - sumSquares;

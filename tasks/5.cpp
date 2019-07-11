@@ -5,7 +5,6 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
  */
 
-
 /**
  * Solution algorithm
  * 1. Remove all numbers that are divisors inside sequence (we have 1,2,3,4,5,6,7,8,9,10), 
@@ -29,53 +28,67 @@ std::vector<int> getBaseNumbers(int upToNum)
     for (int i = 2; i <= upToNum; i++)
     {
         bool noHigherDivider = true;
-        for(int j = 2; j <= upToNum; j++){
-            if(i != j && j % i == 0){
+        for (int j = 2; j <= upToNum; j++)
+        {
+            if (i != j && j % i == 0)
+            {
                 noHigherDivider = false;
                 break;
             }
         }
-        if(noHigherDivider){
+        if (noHigherDivider)
+        {
             v.push_back(i);
         }
     }
     return v;
 }
 
-std::vector<int> getPrimes(int upToNum){
+std::vector<int> getPrimes(int upToNum)
+{
     std::vector<int> primes;
     int arr[upToNum];
     memset(arr, 1, sizeof(arr));
-    for(int i = 2; i <= upToNum; i++){
-        if(arr[i]){
-            for(int j = 2*i; j <= upToNum; j=j+i){
+    for (int i = 2; i <= upToNum; i++)
+    {
+        if (arr[i])
+        {
+            for (int j = 2 * i; j <= upToNum; j = j + i)
+            {
                 arr[j] = 0;
             }
         }
     }
-    for(int i = 2; i <= upToNum; i++){
-        if(arr[i]){
+    for (int i = 2; i <= upToNum; i++)
+    {
+        if (arr[i])
+        {
             primes.push_back(i);
         }
     }
     return primes;
 }
 
-int getGCD(int a, int b){
-    if(a % b == 0){
+int getGCD(int a, int b)
+{
+    if (a % b == 0)
+    {
         return b;
     }
     return getGCD(b, a % b);
 }
 
-int getLCM(int a, int b){
+int getLCM(int a, int b)
+{
     return a * b / getGCD(a, b);
 }
 
-int getVectorLCM(std::vector<int> v){
+int getVectorLCM(std::vector<int> v)
+{
     int lcm = getLCM(v[0], v[1]);
     int len = v.size();
-    for(int i = 2; i < len; i++){
+    for (int i = 2; i < len; i++)
+    {
         lcm = getLCM(lcm, v[i]);
     }
     return lcm;
@@ -86,15 +99,18 @@ int run(int upToNum)
     std::vector<int> nums = getBaseNumbers(upToNum);
     std::vector<int> primes = getPrimes(upToNum);
     std::unordered_map<int, bool> umap;
-    for(auto x: primes){
+    for (auto x : primes)
+    {
         umap[x] = true;
     }
     int product = 1;
     int len = nums.size();
-    for(int i = 0; i < len; i++){
-        if(umap[nums[i]]){
+    for (int i = 0; i < len; i++)
+    {
+        if (umap[nums[i]])
+        {
             product *= nums[i];
-            nums.erase(nums.begin()+i);
+            nums.erase(nums.begin() + i);
         }
     }
     product *= getVectorLCM(nums);
