@@ -7,6 +7,10 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 /**
  * Solution algorithm
+ * You can use brute force, just take every number, and check if it can be divided by 1..10 and increment one by one 
+ * until you get your desired number
+ * But there is a better way to do this
+ * 
  * 1. Remove all numbers that are divisors inside sequence (we have 1,2,3,4,5,6,7,8,9,10), 
  * we can easily remove 2 cause it divisors of 4, 
  * 3 cause it divisor of 9, 
