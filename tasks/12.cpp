@@ -18,6 +18,16 @@ What is the value of the first triangle number to have over five hundred divisor
 
  */
 
+/**
+ * https://math.stackexchange.com/questions/2487523/how-to-find-the-number-of-divisors-of-a-given-number
+ * There is a quicker solution, to calculate primes and then calculate divisors
+ * a1^x1 * a2^x2 * ... an^xn, where a1-an - primes, divisors = (a1+1)*(a2+1)*...(an+1)
+ * But in the end, overall number of operation, not much more than this brute force cause
+ * 1. we need to find all primes from 1 to n (our number)
+ * 2. find the largest prime divisors
+ * 3. divide until we got to 2
+ */
+
 #include <iostream>
 #include <ctime>
 #include <math.h>
