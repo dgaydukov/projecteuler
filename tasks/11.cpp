@@ -37,171 +37,50 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 #include <string.h>
 #include <vector>
 
-int *rotate(int *arr, int side)
-{
-    int *rotated = new int[side * side];
-    int j = 0, k = 0;
-    for (int i = 0; i < side * side; i++)
-    {
-        int newIndex = side * j + k;
-        rotated[i] = arr[newIndex];
-        j++;
-        if (j == side)
-        {
-            j = 0;
-            k++;
-        }
-    }
-    return rotated;
-}
-
-int *diagonalRotate(int *arr, int side)
-{
-    int *rotated = new int[side * side];
-    int mainIndex = 0, step;
-    // moving up
-    step = 1;
-    for (int i = side * (side - 1); i > 0; i -= side)
-    {
-        int index = i;
-        for (int j = 0; j < step; j++)
-        {
-            if (j > 0)
-            {
-                index = index + side + 1;
-            }
-            rotated[mainIndex] = arr[index];
-            mainIndex++;
-        }
-        step++;
-    }
-    // moving right
-    step = side;
-    for (int i = 0; i < side; i++)
-    {
-        int index = i;
-        for (int j = 0; j < step; j++)
-        {
-            if (j > 0)
-            {
-                index = index + side + 1;
-            }
-            rotated[mainIndex] = arr[index];
-            mainIndex++;
-        }
-        step--;
-    }
-    return rotated;
-}
-
-int *backwardDiagonalRotate(int *arr, int side)
-{
-    int *rotated = new int[side * side];
-    int mainIndex = 0, step;
-    // moving right
-    step = 1;
-    for (int i = 0; i < side - 1; i++)
-    {
-        int index = i;
-        for (int j = 0; j < step; j++)
-        {
-            if (j > 0)
-            {
-                index = index + side - 1;
-            }
-            rotated[mainIndex] = arr[index];
-            mainIndex++;
-        }
-        step++;
-    }
-    // moving down
-    step = side;
-    for (int i = side - 1; i < side * side; i += side)
-    {
-        int index = i;
-        for (int j = 0; j < step; j++)
-        {
-            if (j > 0)
-            {
-                index = index + side - 1;
-            }
-            rotated[mainIndex] = arr[index];
-            mainIndex++;
-        }
-        step--;
-    }
-    return rotated;
-}
-
-long getMax(int *arr, int side, int step)
-{
-    long max = 0;
-    int size = side * side;
-    std::vector<int> currV, maxV;
-    for (int i = 0; i < size; i++)
-    {
-        long p = 1;
-        currV.clear();
-        for (int j = i; j < step + i; j++)
-        {
-            int index = j;
-            if (index > size - 1)
-            {
-                index = index % (size - 1);
-            }
-            p *= arr[index];
-            currV.push_back(arr[index]);
-        }
-        if (max < p)
-        {
-            max = p;
-            maxV = currV;
-        }
-    }
-    for (int i = 0; i < 4; i++)
-    {
-        std::cout << maxV[i];
-        if (i == 3)
-        {
-            std::cout << " = ";
-        }
-        else
-        {
-            std::cout << " * ";
-        }
-    }
-    std::cout << max << "\n";
-    return max;
-}
-
 long run(int *arr, int side, int step)
 {
-    long max, curr;
+    long max = 0, p;
+    int i2, i3, i4;
+    int size = side * side;
+    for(int i = 0; i < size; i++){
+        // horizontal product
+        i2 = i + 1 < size ? i + 1 : (i + 1) % size;
+        i3 = i + 2 < size ? i + 2 : (i + 2) % size;
+        i4 = i + 3 < size ? i + 3 : (i + 3) % size;
+        p = arr[i] * arr[i2] * arr[i3] * arr[i4];
+        if(max < p){
+            max = p;
+        }
 
-    max = getMax(arr, side, step);
+        // vertical product
+        i2 = i + side < size ? i + side : (i + side) % size;
+        i3 = i + 2 * side < size ? i + 2 * side : (i + 2 * side) % size;
+        i4 = i + 3 * side < size ? i + 3 * side : (i + 3 * side) % size;
+        p = arr[i] * arr[i2] * arr[i3] * arr[i4];
+        if(max < p){
+            max = p;
+        }
 
-    int *rotated = rotate(arr, side);
-    curr = getMax(rotated, side, step);
-    if (max < curr)
-    {
-        max = curr;
+        // diagonal product
+        i2 = i + side + 1 < size ? i + side + 1 : (i + side + 1) % size;
+        i3 = i + 2 * side + 2 < size ? i + 2 * side + 2 : (i + 2 * side + 2) % size;
+        i4 = i + 3 * side + 3 < size ? i + 3 * side + 3 : (i + 3 * side + 3) % size;
+        p = arr[i] * arr[i2] * arr[i3] * arr[i4];
+        if(max < p){
+            max = p;
+        }
+
+        // backward diagonal
+        i2 = i + side - 1 < size ? i + side - 1 : (i + side - 1) % size;
+        i3 = i + 2 * side - 2 < size ? i + 2 * side - 2 : (i + 2 * side - 2) % size;
+        i4 = i + 3 * side - 3 < size ? i + 3 * side - 3 : (i + 3 * side - 3) % size;
+        p = arr[i] * arr[i2] * arr[i3] * arr[i4];
+        if(max < p){
+            max = p;
+        }
     }
 
-    int *rotated2 = diagonalRotate(arr, side);
-    curr = getMax(rotated2, side, step);
-    if (max < curr)
-    {
-        max = curr;
-    }
-
-    int *rotated3 = backwardDiagonalRotate(arr, side);
-    curr = getMax(rotated3, side, step);
-    if (max < curr)
-    {
-        max = curr;
-    }
-
-    // return max;
+    return max;
 }
 
 int main()
