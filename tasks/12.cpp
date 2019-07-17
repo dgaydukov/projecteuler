@@ -32,10 +32,13 @@ What is the value of the first triangle number to have over five hundred divisor
 #include <ctime>
 #include <math.h>
 
-int getDivisorNum(int n){
+int getDivisorNum(int n)
+{
     int num = 1;
-    for(int i = 1; i < sqrt(n); i++){
-        if(n % i == 0){
+    for (int i = 1; i < sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
             num += 2;
         }
     }
@@ -44,11 +47,13 @@ int getDivisorNum(int n){
 
 long run(int n)
 {
-    int i=1, triangle, prev = 0;
-    while(true){
+    int i = 1, triangle, prev = 0;
+    while (true)
+    {
         triangle = prev + i;
         int divisors = getDivisorNum(triangle);
-        if(divisors >= n){
+        if (divisors >= n)
+        {
             return triangle;
         }
         prev = triangle;

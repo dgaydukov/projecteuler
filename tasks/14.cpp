@@ -18,25 +18,28 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 #include <iostream>
 #include <ctime>
-#include <string> 
+#include <string>
 #include <algorithm>
 #include <unordered_map>
-
 
 int run(int n)
 {
     std::unordered_map<int, int> umap;
 
-    auto getCollatzNumber = [&umap](long n){
+    auto getCollatzNumber = [&umap](long n) {
         int counter = 1;
-        while(n != 1){
-            if(n % 2 == 0){
+        while (n != 1)
+        {
+            if (n % 2 == 0)
+            {
                 n = n / 2;
             }
-            else{
+            else
+            {
                 n = 3 * n + 1;
             }
-            if(umap[n]){
+            if (umap[n])
+            {
                 return umap[n] + counter;
             }
             counter++;
@@ -45,10 +48,12 @@ int run(int n)
     };
 
     int chainLen = 0, maxNum = n;
-    for(int i = 2; i <= n; i++){
+    for (int i = 2; i <= n; i++)
+    {
         int num = getCollatzNumber(i);
         umap[i] = num;
-        if(chainLen < num){
+        if (chainLen < num)
+        {
             chainLen = num;
             maxNum = i;
         }

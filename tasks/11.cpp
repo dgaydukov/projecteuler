@@ -42,13 +42,15 @@ long run(int *arr, int side, int step)
     long max = 0, p;
     int i2, i3, i4;
     int size = side * side;
-    for(int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++)
+    {
         // horizontal product
         i2 = i + 1 < size ? i + 1 : (i + 1) % size;
         i3 = i + 2 < size ? i + 2 : (i + 2) % size;
         i4 = i + 3 < size ? i + 3 : (i + 3) % size;
         p = arr[i] * arr[i2] * arr[i3] * arr[i4];
-        if(max < p){
+        if (max < p)
+        {
             max = p;
         }
 
@@ -57,7 +59,8 @@ long run(int *arr, int side, int step)
         i3 = i + 2 * side < size ? i + 2 * side : (i + 2 * side) % size;
         i4 = i + 3 * side < size ? i + 3 * side : (i + 3 * side) % size;
         p = arr[i] * arr[i2] * arr[i3] * arr[i4];
-        if(max < p){
+        if (max < p)
+        {
             max = p;
         }
 
@@ -66,7 +69,8 @@ long run(int *arr, int side, int step)
         i3 = i + 2 * side + 2 < size ? i + 2 * side + 2 : (i + 2 * side + 2) % size;
         i4 = i + 3 * side + 3 < size ? i + 3 * side + 3 : (i + 3 * side + 3) % size;
         p = arr[i] * arr[i2] * arr[i3] * arr[i4];
-        if(max < p){
+        if (max < p)
+        {
             max = p;
         }
 
@@ -75,7 +79,8 @@ long run(int *arr, int side, int step)
         i3 = i + 2 * side - 2 < size ? i + 2 * side - 2 : (i + 2 * side - 2) % size;
         i4 = i + 3 * side - 3 < size ? i + 3 * side - 3 : (i + 3 * side - 3) % size;
         p = arr[i] * arr[i2] * arr[i3] * arr[i4];
-        if(max < p){
+        if (max < p)
+        {
             max = p;
         }
     }

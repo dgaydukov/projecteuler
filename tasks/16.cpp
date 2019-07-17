@@ -11,15 +11,18 @@ What is the sum of the digits of the number 21000?
 #include <vector>
 #include <algorithm>
 
-std::vector<int> mul(std::vector<int> v, int n){
+std::vector<int> mul(std::vector<int> v, int n)
+{
     std::vector<int> p;
-    int left=0;
-    for(int i = v.size()-1; i >= 0; i--){
+    int left = 0;
+    for (int i = v.size() - 1; i >= 0; i--)
+    {
         int res = v[i] * n + left;
         p.push_back(res % 10);
         left = res / 10;
     };
-    while(left > 0){
+    while (left > 0)
+    {
         p.push_back(left % 10);
         left = left / 10;
     }
@@ -32,10 +35,12 @@ int run(int a, int b)
     int sum = 0;
     std::vector<int> v;
     v.push_back(a);
-    for(int i = 0; i < b-1; i++){
+    for (int i = 0; i < b - 1; i++)
+    {
         v = mul(v, a);
     }
-    for(int i = 0; i < v.size(); i++){
+    for (int i = 0; i < v.size(); i++)
+    {
         sum += v[i];
     }
     return sum;

@@ -15,7 +15,8 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
 #include <string.h>
 #include <math.h>
 
-int getLetterCount(int n){
+int getLetterCount(int n)
+{
     std::unordered_map<int, int> umap({
         {1, strlen("one")},
         {2, strlen("two")},
@@ -47,8 +48,10 @@ int getLetterCount(int n){
         {100, strlen("hundred")},
         {1000, strlen("thousand")},
     });
-    if(umap[n]){
-        if(n == 100 || n == 1000){
+    if (umap[n])
+    {
+        if (n == 100 || n == 1000)
+        {
             return umap[n] + 3;
         }
         return umap[n];
@@ -56,21 +59,27 @@ int getLetterCount(int n){
     int count = 0;
     int power = 0;
     int prev;
-    while(n > 0){
+    while (n > 0)
+    {
         int order = pow(10, power);
         int num = (n % 10) * order;
         int len = umap[num];
-        if(power == 1){
-            if(umap[prev + num]){
+        if (power == 1)
+        {
+            if (umap[prev + num])
+            {
                 len = umap[prev + num] - count;
             }
         }
         prev = num;
-        if(power == 2){
-            if(num > 0){
+        if (power == 2)
+        {
+            if (num > 0)
+            {
                 len = umap[num / order] + umap[order];
             }
-            if(count > 0){
+            if (count > 0)
+            {
                 len += 3;
             }
         }
@@ -84,7 +93,8 @@ int getLetterCount(int n){
 int run(int size)
 {
     int letters = 0;
-    for(int i = 1; i <= size; i++){
+    for (int i = 1; i <= size; i++)
+    {
         letters += getLetterCount(i);
     }
     return letters;

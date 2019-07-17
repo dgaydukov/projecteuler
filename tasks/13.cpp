@@ -107,17 +107,19 @@ Work out the first ten digits of the sum of the following one-hundred 50-digit n
 
 #include <iostream>
 #include <ctime>
-#include <string> 
-#include <algorithm> 
+#include <string>
+#include <algorithm>
 
 std::string run(std::string s, int size, int row)
 {
     int step = size / row;
     std::string res = "";
     int left = 0;
-    for(int i = row-1; i >= 0; i--){
+    for (int i = row - 1; i >= 0; i--)
+    {
         int sum = left;
-        for(int j = 0; j < step; j++){
+        for (int j = 0; j < step; j++)
+        {
             int index = i + j * row;
             int n = s[index] - '0';
             sum += n;
